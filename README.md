@@ -33,12 +33,6 @@
   <em>Browse through a collection of job listings for targeted interview practice</em>
 </p>
 
-### Profile Management
-<p align="center">
-  <img src="screenshots/profile-update.png" alt="Profile Update Section" width="800"/>
-  <br>
-  <em>User profile customization with skills, preferences, and progress tracking</em>
-</p>
 
 ### Authentication
 <p align="center">
@@ -107,7 +101,7 @@
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/omtripathii/codeprepai.git
+   git clone https://github.com/kushgit07/codeprepai.git
    cd codeprepai
    ```
 
