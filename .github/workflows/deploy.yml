@@ -1,0 +1,78 @@
+name: 🚀 Refresh Backend Deployment
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    name: 🔄 Refresh EC2 Backend
+    
+    steps:
+      - name: 🎭 ASCII Art Banner
+        run: |
+          echo "
+          ╭━━━╮╱╱╱╱╱╱╭╮╱╱╱╱╱╱╱╱╭━━━╮╱╱╱╱╱╱╭╮
+          ┃╭━╮┃╱╱╱╱╱╱┃┃╱╱╱╱╱╱╱╱┃╭━╮┃╱╱╱╱╱╱┃┃
+          ┃┃╱╰╋━━┳━━╮┃┃╱╱╭━━┳━╮┃╰━━┳━━┳━━┃┃
+          ┃┃╱╭┫╭╮┃╭╮┃┃┃╱╭┫╭╮┃╭╯╰━━╮┃╭╮┃╭╮┃┃
+          ┃╰━╯┃╭╮┃╰╯┃┃╰━╯┃╰╯┃┃╱┃╰━╯┃╰╯┃╰╯┃╰╮
+          ╰━━━┻╯╰┻━━╯╰━━━┻━━┻╯╱╰━━━┻━━┻━━┻━╯
+          " 
+
+      - name: 🔑 Setup SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/ec2.key
+          chmod 600 ~/.ssh/ec2.key
+          echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+
+      - name: 🔄 Update Repository and Restart Services
+        env:
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          EC2_USERNAME: ${{ secrets.EC2_USERNAME }}
+        run: |
+          echo "🌟 Connecting to server..."
+          ssh -i ~/.ssh/ec2.key $EC2_USERNAME@$EC2_HOST "
+            echo '🎉 Connection successful!'
+            
+            echo '📂 Navigating to CodePrepAi directory...'
+            cd CodePrepAi
+            
+            echo '⬇️ Pulling latest changes from GitHub...'
+            git pull
+            
+            echo '📦 Installing any new dependencies...'
+            cd server
+            npm install --no-fund --no-audit
+            
+            echo '🔄 Restarting PM2 process...'
+            pm2 restart backend
+            
+            echo '💾 Saving PM2 process list...'
+            pm2 save
+            
+            echo '🔄 Restarting Nginx...'
+            sudo systemctl restart nginx
+            
+            echo '✅ Deployment refresh completed successfully!'
+            
+            echo '
+            ╭━━━━╮╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╭╮╱╱╱╱╱╱╱╱╱╱╱╱╱╱╭╮
+            ┃╭╮╭╮┃╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱┃┃╱╱╱╱╱╱╱╱╱╱╱╱╱╱┃┃
+            ╰╯┃┃╰┻━┳━━┳━╮╭━━┳╮╭┳━╯┣━━┳━┳━━┳━━┳━━┫┃
+            ╱╱┃┃╭━┫╭╮┃╭╮┫╭╮┃╰╯┃╭╮┃┃━┫╭┫╭╮┃╭╮┃┃━┫┃
+            ╱╱┃┃┃━┫╭╮┃┃┃┃╭╮┃┃┃┃╰╯┃┃━┫┃┃╰╯┃╰╯┃┃━┫╰╮
+            ╱╱╰╯╰━┻╯╰┻╯╰┻╯╰┻┻┻┻━━┻━━┻╯╰━━┻━━┻━━┻━╯
+            '
+          "
+
+      - name: 🎊 Post-Refresh Message
+        run: |
+          echo "
+          ╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮
+          ┃  🎉 Refresh completed successfully! 🎉  ┃
+          ╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯
+          "
