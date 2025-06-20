@@ -310,5 +310,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ---
 
 <p align="center">
-  Built with ❤️ by <a href="https://github.com/omtripathii">Om Tripathi</a>
+  Built with ❤️ by <a href="https://github.com/kushgit07">KUSHAGRA SISODIA</a>
 </p>
