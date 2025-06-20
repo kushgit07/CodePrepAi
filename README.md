@@ -4,12 +4,6 @@
 > An AI-powered coding interview preparation platform designed to help developers excel in technical interviews through realistic mock interviews, real-time code execution, and AI-enhanced feedback.
 
 
-## ✨ Features
-
-### Core Features
-- **🤖 AI-Generated Coding Questions**: Dynamic questions generated based on job descriptions
-- **💻 Real-time Code Execution**: Test your code instantly across multiple programming languages
-- **📱 Responsive Design**: Seamless experience across desktop and mobile devices
 
 ### Development Highlights
 - **Backend**
