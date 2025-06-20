@@ -1,7 +1,7 @@
 # 🚀 CodePrepAI
 
 
-> An AI-powered coding interview preparation platform designed to help developers excel in technical interviews through realistic mock interviews, real-time code execution, and AI-enhanced feedback.
+> An AI-powered coding interview preparation platform designed to help developers excel in technical interviews through realistic mock interviews.
 
 
 
@@ -49,7 +49,7 @@
 - **Vite**: Fast development and optimized builds
 - **Styled Components**: Maintaining consistent UI design
 - **Axios**: Handling API requests efficiently
-- **Monaco Editor**: Feature-rich code editor with syntax highlighting
+
 
 ### Backend
 - **Node.js**: JavaScript runtime for server-side logic
