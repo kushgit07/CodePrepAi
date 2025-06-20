@@ -9,17 +9,12 @@
 ### Core Features
 - **🤖 AI-Generated Coding Questions**: Dynamic questions generated based on job descriptions
 - **💻 Real-time Code Execution**: Test your code instantly across multiple programming languages
-- **📊 AI-powered Code Feedback**: Get detailed insights on your solution's efficiency, style, and areas for improvement
-- **🧩 Automatic Test Cases**: AI-generated test cases to validate your solutions thoroughly
-- **👔 Job-Specific Practice**: Practice with questions tailored to actual job listings
 - **📱 Responsive Design**: Seamless experience across desktop and mobile devices
 
 ### Development Highlights
 - **Backend**
   - ✅ Node.js + Express.js – RESTful APIs for fetching jobs and handling code submissions
   - ✅ MongoDB – Efficient storage for user profiles, attempts, and feedback
-  - ✅ AI Model Integration – Advanced AI-based review system
-  - ✅ Coding Compiler API – Judge0 integration for secure code execution
   - ✅ Efficient API handling – Optimized for scalability and performance
 
 - **Frontend**
@@ -167,34 +162,6 @@
    
    Open your browser and navigate to `http://localhost:5173`
 
-
-
-
-
-The project uses GitHub Actions for continuous integration and deployment:
-
-```yaml
-name: 🚀 Refresh Backend Deployment
-
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
-
-jobs:
-  refresh:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🔑 Setup SSH Key
-        run: |
-          # SSH key setup...
-          
-      - name: 🔄 Update Repository and Restart Services
-        run: |
-          # Connect to EC2
-          # Pull latest changes
-          # Restart services
-```
 
 ## 📁 Project Structure
 
